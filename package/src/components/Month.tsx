@@ -27,7 +27,7 @@ import Day from './Day';
 // eslint-disable-next-line no-unused-vars
 import { NavigationAction, DateRange } from '../types';
 
-const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const WEEK_DAYS = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
 
 const useStyles = makeStyles(() => ({
   root: {
