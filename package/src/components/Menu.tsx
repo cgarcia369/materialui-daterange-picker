@@ -12,7 +12,6 @@ import {
   Popover,
 } from '@material-ui/core';
 import { format, differenceInCalendarMonths } from 'date-fns';
-import { es } from "date-fns/locale";
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import Month from './Month';
 import DefinedRanges from './DefinedRanges';
@@ -41,7 +40,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: 20,
   },
   actions:{
-    margin:'0 0.5rem'
+    margin:'0 0.5rem',
+    textTransform:'none',
   }
 }));
 
@@ -101,7 +101,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               <Grid container className={classes.header} alignItems="center">
                 <Grid item className={classes.headerItem}>
                   <Typography variant="subtitle1">
-                    {startDate ? format(startDate, 'MM/DD/YYYY',{ locale: es }) : 'Fecha de inicio'}
+                    {startDate ? format(startDate, 'DD/MM/YYYY') : 'Fecha de inicio'}
                   </Typography>
                 </Grid>
                 <Grid item className={classes.headerItem}>
@@ -109,12 +109,12 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
                 </Grid>
                 <Grid item className={classes.headerItem}>
                   <Typography variant="subtitle1">
-                    {endDate ? format(endDate, 'MM/DD/YYYY',{ locale: es }) : 'Fecha final'}
+                    {endDate ? format(endDate, 'DD/MM/YYYY') : 'Fecha final'}
                   </Typography>
                 </Grid>
               </Grid>
               <Divider />
-              <Grid container direction="row" justifyContent="center" wrap="nowrap">
+              <Grid container direction="row" justifyContent="center" wrap="wrap">
                 <Month
                   {...commonProps}
                   value={firstMonth}
@@ -141,9 +141,8 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               />
             </Grid>
           </Grid>
-          <Box display="flex" flexDirection="row" width="100%" paddingBottom="1rem" paddingLeft="1rem">
+          <Box display="flex" flexDirection="row" justifyContent="flex-end"  width="100%" paddingBottom="1rem" px="1rem">
             <Button onClick={()=>{
-              console.log("toggle")
               handleToggle();
             }} className={classes.actions}>
               Guardar

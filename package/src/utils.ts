@@ -1,3 +1,4 @@
+// @ts-ignore
 import {
   startOfWeek,
   startOfMonth,
@@ -68,6 +69,7 @@ type Falsy = false | null | undefined | 0 | '';
 
 export const parseOptionalDate = (date: Date | string | Falsy, defaultValue: Date) => {
   if (date) {
+    // @ts-ignore
     const parsed = parse(date);
     if (isValid(parsed)) return parsed;
   }
@@ -77,7 +79,9 @@ export const parseOptionalDate = (date: Date | string | Falsy, defaultValue: Dat
 export const getValidatedMonths = (range: DateRange, minDate: Date, maxDate: Date) => {
   const { startDate, endDate } = range;
   if (startDate && endDate) {
+    // @ts-ignore
     const newStart = max(startDate, minDate);
+    // @ts-ignore
     const newEnd = min(endDate, maxDate);
 
     return [newStart, isSameMonth(newStart, newEnd) ? addMonths(newStart, 1) : newEnd];

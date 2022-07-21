@@ -27,11 +27,14 @@ import Day from './Day';
 // eslint-disable-next-line no-unused-vars
 import { NavigationAction, DateRange } from '../types';
 
-const WEEK_DAYS = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
+const WEEK_DAYS = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'];
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme:any) => ({
   root: {
-    width: 290,
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 290,
+    }
   },
   weekDaysContainer: {
     marginTop: 10,

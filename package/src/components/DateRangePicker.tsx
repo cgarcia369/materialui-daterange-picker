@@ -2,10 +2,10 @@
 /* eslint-disable no-param-reassign */
 
 import * as React from 'react';
+// @ts-ignore
 import {
   addMonths,
   isSameDay,
-  isWithinRange,
   isAfter,
   isBefore,
   isSameMonth,
@@ -13,6 +13,7 @@ import {
   max,
   min,
 } from 'date-fns';
+import * as isWithinRange from 'date-fns/is_within_range';
 
 // eslint-disable-next-line no-unused-vars
 import { DateRange, NavigationAction, DefinedRange } from '../types';
@@ -92,7 +93,9 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (
     let { startDate: newStart, endDate: newEnd } = range;
 
     if (newStart && newEnd) {
+      // @ts-ignore
       range.startDate = newStart = max(newStart, minDateValid);
+      // @ts-ignore
       range.endDate = newEnd = min(newEnd, maxDateValid);
 
       setDateRange(range);
