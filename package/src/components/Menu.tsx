@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderLeft: `1px solid ${theme.palette.action.hover}`,
     marginBottom: 20,
   },
-  actions:{
-    margin:'0 0.5rem',
-    textTransform:'none',
-  }
+  actions: {
+    margin: '0 0.5rem',
+    textTransform: 'none',
+  },
 }));
 
 interface MenuProps {
@@ -66,6 +66,8 @@ interface MenuProps {
   handleToggle: any;
   anchorEl:any;
   anchorOrigin:any;
+  componentReset?:any;
+  handleReset:any;
 }
 
 const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
@@ -86,70 +88,76 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
     handleToggle,
     anchorEl,
     anchorOrigin,
+    componentReset,
+    handleReset,
   } = props;
-
+  console.log(componentReset);
   const { startDate, endDate } = dateRange;
   const canNavigateCloser = differenceInCalendarMonths(secondMonth, firstMonth) >= 2;
   const commonProps = {
     dateRange, minDate, maxDate, helpers, handlers,
   };
   return (
-      <Popover open anchorEl={anchorEl} anchorOrigin={anchorOrigin} onClose={handleToggle}>
-        <Paper elevation={5} square>
-          <Grid container direction="row" wrap="nowrap">
-            <Grid>
-              <Grid container className={classes.header} alignItems="center">
-                <Grid item className={classes.headerItem}>
-                  <Typography variant="subtitle1">
-                    {startDate ? format(startDate, 'DD/MM/YYYY') : 'Fecha de inicio'}
-                  </Typography>
-                </Grid>
-                <Grid item className={classes.headerItem}>
-                  <ArrowRightAlt color="action" />
-                </Grid>
-                <Grid item className={classes.headerItem}>
-                  <Typography variant="subtitle1">
-                    {endDate ? format(endDate, 'DD/MM/YYYY') : 'Fecha final'}
-                  </Typography>
-                </Grid>
+    <Popover open anchorEl={anchorEl} anchorOrigin={anchorOrigin} onClose={handleToggle}>
+      <Paper elevation={5} square>
+        <Grid container direction="row" wrap="nowrap">
+          <Grid>
+            <Grid container className={classes.header} alignItems="center">
+              <Grid item className={classes.headerItem}>
+                <Typography variant="subtitle1">
+                  {startDate ? format(startDate, 'DD/MM/YYYY') : 'Fecha de inicio'}
+                </Typography>
               </Grid>
-              <Divider />
-              <Grid container direction="row" justifyContent="center" wrap="wrap">
-                <Month
-                  {...commonProps}
-                  value={firstMonth}
-                  setValue={setFirstMonth}
-                  navState={[true, canNavigateCloser]}
-                  marker={MARKERS.FIRST_MONTH}
-                />
-                <div className={classes.divider} />
-                <Month
-                  {...commonProps}
-                  value={secondMonth}
-                  setValue={setSecondMonth}
-                  navState={[canNavigateCloser, true]}
-                  marker={MARKERS.SECOND_MONTH}
-                />
+              <Grid item className={classes.headerItem}>
+                <ArrowRightAlt color="action" />
+              </Grid>
+              <Grid item className={classes.headerItem}>
+                <Typography variant="subtitle1">
+                  {endDate ? format(endDate, 'DD/MM/YYYY') : 'Fecha final'}
+                </Typography>
               </Grid>
             </Grid>
-            <div className={classes.divider} />
-            <Grid>
-              <DefinedRanges
-                selectedRange={dateRange}
-                ranges={ranges}
-                setRange={setDateRange}
+            <Divider />
+            <Grid container direction="row" justifyContent="center" wrap="wrap">
+              <Month
+                {...commonProps}
+                value={firstMonth}
+                setValue={setFirstMonth}
+                navState={[true, canNavigateCloser]}
+                marker={MARKERS.FIRST_MONTH}
+              />
+              <div className={classes.divider} />
+              <Month
+                {...commonProps}
+                value={secondMonth}
+                setValue={setSecondMonth}
+                navState={[canNavigateCloser, true]}
+                marker={MARKERS.SECOND_MONTH}
               />
             </Grid>
           </Grid>
-          <Box display="flex" flexDirection="row" justifyContent="flex-end"  width="100%" paddingBottom="1rem" px="1rem">
-            <Button onClick={()=>{
+          <div className={classes.divider} />
+          <Grid>
+            <DefinedRanges
+              selectedRange={dateRange}
+              ranges={ranges}
+              setRange={setDateRange}
+            />
+          </Grid>
+        </Grid>
+        <Box display="flex" flexDirection="row" justifyContent="space-between" width="100%" paddingBottom="1rem" px="1rem">
+          {componentReset && React.createElement(componentReset,{onReset:handleReset})}
+          <Button
+            onClick={() => {
               handleToggle();
-            }} className={classes.actions}>
-              Guardar
-            </Button>
-          </Box>
-        </Paper>
-      </Popover>
+            }}
+            className={classes.actions}
+          >
+            Guardar
+          </Button>
+        </Box>
+      </Paper>
+    </Popover>
   );
 };
 

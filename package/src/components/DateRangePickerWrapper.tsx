@@ -41,6 +41,8 @@ export interface DateRangePickerWrapperProps {
   wrapperClassName?: string;
   anchorEl:any;
   anchorOrigin:any;
+  componentReset?:any;
+  defaultValue:any;
 }
 
 const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProps> = (
@@ -66,7 +68,6 @@ const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProp
   const handleKeyPress = (event: any) => event?.key === 'Escape' && handleToggle();
 
   const wrapperClasses = classNames(classes.dateRangePicker, wrapperClassName);
-
   return (
     <div className={classes.dateRangePickerContainer}>
       {
