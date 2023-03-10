@@ -38,6 +38,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    "react/require-default-props": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
     "react/jsx-props-no-spreading": 0,
     "import/extensions": 0,

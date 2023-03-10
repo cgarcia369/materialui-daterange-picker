@@ -66,7 +66,6 @@ interface MenuProps {
   handleToggle: any;
   anchorEl:any;
   anchorOrigin:any;
-  componentReset?:any;
   handleReset:any;
 }
 
@@ -88,10 +87,8 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
     handleToggle,
     anchorEl,
     anchorOrigin,
-    componentReset,
     handleReset,
   } = props;
-  console.log(componentReset);
   const { startDate, endDate } = dateRange;
   const canNavigateCloser = differenceInCalendarMonths(secondMonth, firstMonth) >= 2;
   const commonProps = {
@@ -145,8 +142,13 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
             />
           </Grid>
         </Grid>
-        <Box display="flex" flexDirection="row" justifyContent="space-between" width="100%" paddingBottom="1rem" px="1rem">
-          {componentReset && React.createElement(componentReset,{onReset:handleReset})}
+        <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" paddingBottom="1rem" px="1rem">
+          <Button
+            onClick={handleReset}
+            className={classes.actions}
+          >
+            Restablecer
+          </Button>
           <Button
             onClick={() => {
               handleToggle();

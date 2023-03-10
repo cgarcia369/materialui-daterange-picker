@@ -67,7 +67,7 @@ export const isRangeSameDay = ({ startDate, endDate }: DateRange) => {
 
 type Falsy = false | null | undefined | 0 | '';
 
-export const parseOptionalDate = (date: Date | string | Falsy, defaultValue: Date) => {
+export const parseOptionalDate = (date: Date | string | Falsy, defaultValue: Date):Date => {
   if (date) {
     // @ts-ignore
     const parsed = parse(date);

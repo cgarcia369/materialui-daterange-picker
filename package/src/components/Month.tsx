@@ -23,7 +23,6 @@ import {
 import Header from './Header';
 import Day from './Day';
 
-
 // eslint-disable-next-line no-unused-vars
 import { NavigationAction, DateRange } from '../types';
 
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme:any) => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       width: 290,
-    }
+    },
   },
   weekDaysContainer: {
     marginTop: 10,
